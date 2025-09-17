@@ -27,97 +27,58 @@ Blocking assignments execute sequentially in the given order, which makes it eas
 ## VERILOG CODE
 
 ### SR Flip-Flop (Blocking)
-```verilog
-module sr_ff (
-    input wire S, R, clk,
-    output reg Q
-);
-    always @(posedge clk) begin
 
+<img width="1920" height="1080" alt="Screenshot 2025-09-17 202556" src="https://github.com/user-attachments/assets/5e828155-65bd-4da7-9b93-e61b0721c4ca" />
 
-
-endmodule
-```
 ### SR Flip-Flop Test bench 
-```verilog
 
+<img width="1920" height="1080" alt="Screenshot 2025-09-17 203702" src="https://github.com/user-attachments/assets/aaa72521-455b-4060-8586-6101bed954fb" />
 
-
-```
 #### SIMULATION OUTPUT
 
-------- paste the output here -------
----
+<img width="1920" height="1080" alt="Screenshot 2025-09-17 203115" src="https://github.com/user-attachments/assets/274c38dc-f221-40fd-aeb2-d3fbdf6e909c" />
 
 ### JK Flip-Flop (Blocking)
-```verilog
-module jk_ff (
-    input wire J, K, clk,
-    output reg Q
-);
-    always @(posedge clk) begin
+
+<img width="1920" height="1080" alt="Screenshot 2025-09-17 103441" src="https://github.com/user-attachments/assets/d0a56522-98a9-40e8-8bd0-682d82b5f29e" />
 
 
-
-endmodule
-```
 ### JK Flip-Flop Test bench 
-```verilog
+
+<img width="1920" height="1080" alt="Screenshot 2025-09-17 104914" src="https://github.com/user-attachments/assets/57d5180b-a253-4957-a74a-0078b981a1ff" />
 
 
-
-```
 #### SIMULATION OUTPUT
 
-------- paste the output here -------
----
+<img width="1920" height="1080" alt="Screenshot 2025-09-17 112013" src="https://github.com/user-attachments/assets/b82f3211-8f31-4dac-aed8-4acee568961b" />
+
 ### D Flip-Flop (Blocking)
-```verilog
-module d_ff (
-    input wire d,clk,
-    output reg Q
-);
-    always @(posedge clk) begin
+
+<img width="1920" height="1080" alt="Screenshot 2025-09-17 211641" src="https://github.com/user-attachments/assets/b834b4cf-ca88-4bca-b97a-456042dc8625" />
 
 
-
-endmodule
-```
 ### D Flip-Flop Test bench 
-```verilog
 
+<img width="1920" height="1080" alt="Screenshot 2025-09-17 213229" src="https://github.com/user-attachments/assets/08c07251-a717-41ce-8d07-abdb30e68d7f" />
 
-
-```
 
 #### SIMULATION OUTPUT
 
-------- paste the output here -------
----
+<img width="1920" height="1080" alt="Screenshot 2025-09-17 211625" src="https://github.com/user-attachments/assets/d20de359-4c94-46b9-b457-ae978c2d6677" />
+
 ### T Flip-Flop (Blocking)
-```verilog
-module d_ff (
-    input wire d,clk,
-    output reg Q
-);
-    always @(posedge clk) begin
 
+<img width="1920" height="1080" alt="Screenshot 2025-09-17 204419" src="https://github.com/user-attachments/assets/3593906d-4b77-4bc0-9adf-598f621b56a5" />
 
-
-endmodule
-```
 ### T Flip-Flop Test bench 
-```verilog
 
+<img width="1920" height="1080" alt="Screenshot 2025-09-17 205920" src="https://github.com/user-attachments/assets/d4aec8d5-0dc2-4d80-8684-a3e23053dd7e" />
 
-
-```
 
 #### SIMULATION OUTPUT
 
-------- paste the output here -------
+<img width="1920" height="1080" alt="Screenshot 2025-09-17 205226" src="https://github.com/user-attachments/assets/70a615bd-50c2-498d-a32d-c16e64b8b291" />
 
----
 
 ### RESULT
 
