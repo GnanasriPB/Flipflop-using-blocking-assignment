@@ -27,12 +27,46 @@ Blocking assignments execute sequentially in the given order, which makes it eas
 ## VERILOG CODE
 
 ### SR Flip-Flop (Blocking)
+```
+module sr_ff(s,r,clk,rst,q);
+input s,r,clk,rst;
+output reg q;
+always@(posedge clk)
+begin
+if (rst==1)
+q=1'b0;
+else if (s==0 && r==0)
+q=q;
+else if (s==0 && r==1)
+q=1'b0;
+else if (s==1 && r==0)
+q=1'b1;
+else
+q=1'bx;
+end
+endmodule
+```
 
-<img width="1920" height="1080" alt="Screenshot 2025-09-17 202556" src="https://github.com/user-attachments/assets/5e828155-65bd-4da7-9b93-e61b0721c4ca" />
 
 ### SR Flip-Flop Test bench 
-
-<img width="1920" height="1080" alt="Screenshot 2025-09-17 203702" src="https://github.com/user-attachments/assets/aaa72521-455b-4060-8586-6101bed954fb" />
+```
+module tb_SRFF;
+reg s,r,clk,rst;
+wire q;
+SRFF uut(s,r,clk,rst,q);
+always #5 clk=~clk;
+initial begin
+clk=0;s=0;r=0;rst=1;
+#10 rst=0;
+#10 s=0; r=0;
+#10 s=0; r=1;
+#10 s=1; r=0;
+#10 s=1; r=1;
+#10 s=0; r=0;
+#20 $finish;
+end 
+endmodule
+```
 
 #### SIMULATION OUTPUT
 
@@ -40,12 +74,54 @@ Blocking assignments execute sequentially in the given order, which makes it eas
 
 ### JK Flip-Flop (Blocking)
 
-<img width="1920" height="1080" alt="Screenshot 2025-09-17 103441" src="https://github.com/user-attachments/assets/d0a56522-98a9-40e8-8bd0-682d82b5f29e" />
+```
+module jk_ff(j,k,clk,rst,q);
+input j,k,clk,rst;
+output reg q;
+always@(posedge clk)
+begin
+if (rst==0)
+q=0;
+else if(j==0 && k==0)
+q=q;
+else if(j==0 && k==1)
+q <= 1'b0;
+else if(j==1 && k==0)
+q <= 1'b1;
+else
+q <= ~q;
+end
+endmodule
+```
 
 
 ### JK Flip-Flop Test bench 
 
-<img width="1920" height="1080" alt="Screenshot 2025-09-17 104914" src="https://github.com/user-attachments/assets/57d5180b-a253-4957-a74a-0078b981a1ff" />
+```
+module tb_jk_ff;
+  reg j, k, clk, rst;
+  wire q;
+  jk_ff uut (j,k,clk,rst,q);
+  always #5 clk = ~clk;
+  initial begin
+    clk = 0;
+    rst = 1;
+    j = 0;
+    k = 0;
+    #10 rst = 0;
+    #10 j = 0; k = 0;
+    #10 j = 0; k = 1;
+    #10 j = 1; k = 0;
+    #10 j = 1; k = 1;
+    #10 j = 1; k = 1;
+    #10 j = 0; k = 0;
+    #20 $finish;
+  end
+  initial begin
+    $monitor("Time=%0t | clk=%b | rst=%b | j=%b | k=%b | q=%b", $time, clk, rst, j, k, q);
+  end
+endmodule
+```
 
 
 #### SIMULATION OUTPUT
@@ -54,12 +130,40 @@ Blocking assignments execute sequentially in the given order, which makes it eas
 
 ### D Flip-Flop (Blocking)
 
-<img width="1920" height="1080" alt="Screenshot 2025-09-17 211641" src="https://github.com/user-attachments/assets/b834b4cf-ca88-4bca-b97a-456042dc8625" />
+```
+module d_ff(clk,rst,D,Q);
+input clk,rst,D;
+output reg Q;
+always @ (posedge clk)
+begin
+  if (rst==1)
+     Q=0;
+  else
+     Q=D;
+end
+endmodule
+```
 
 
 ### D Flip-Flop Test bench 
 
-<img width="1920" height="1080" alt="Screenshot 2025-09-17 213229" src="https://github.com/user-attachments/assets/08c07251-a717-41ce-8d07-abdb30e68d7f" />
+```
+module tb_d_ff;
+  reg clk,rst,D;
+  wire Q;
+  d_ff uut(clk,rst,D,Q);
+  always #5 clk=~clk;
+  initial
+  begin
+    clk=0;
+    D=0;
+    rst=1;#10;
+    rst=0;
+    D=0; #10;
+    D=1;
+  end
+endmodule
+```
 
 
 #### SIMULATION OUTPUT
@@ -68,11 +172,45 @@ Blocking assignments execute sequentially in the given order, which makes it eas
 
 ### T Flip-Flop (Blocking)
 
-<img width="1920" height="1080" alt="Screenshot 2025-09-17 204419" src="https://github.com/user-attachments/assets/3593906d-4b77-4bc0-9adf-598f621b56a5" />
+```
+module t_ff(clk,rst,t,q);
+input clk,rst,t;
+output reg q;
+always@(posedge clk)
+begin
+if (rst==1)
+q=0;
+else if(t==0)
+q=q;
+else
+q = ~q;
+end
+endmodule
+```
 
 ### T Flip-Flop Test bench 
-
-<img width="1920" height="1080" alt="Screenshot 2025-09-17 205920" src="https://github.com/user-attachments/assets/d4aec8d5-0dc2-4d80-8684-a3e23053dd7e" />
+```
+module tb_t_ff;
+reg clk,rst,t;
+wire q;
+t_ff uut(clk,rst,t,q);
+always #5 clk = ~clk;
+initial
+begin
+clk = 0;
+rst = 1;
+t = 0;
+#10 rst = 0;
+#10 t = 0;
+#10 t = 1;
+#20 $finish;
+end
+initial
+begin
+$monitor("Time=%0t, clk=%b, rst=%b, t=%b, q=%b", $time, clk, rst, t, q);
+end
+endmodule
+```
 
 
 #### SIMULATION OUTPUT
